@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import { jsPDF } from "jspdf";
 import autoTable from "jspdf-autotable";
+import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 
 interface Product {
   name: string;
@@ -11,6 +13,7 @@ interface Product {
 }
 
 export default function Home() {
+  const router = useRouter();
   const [products, setProducts] = useState<Product[]>([]);
   const [product, setProduct] = useState({ name: "", quantity: "", price: "" });
 
@@ -62,6 +65,15 @@ export default function Home() {
         Generate Bill
       </h1>
 
+      <button
+        className="text-3xl font-bold text-center mb-8 text-gray-800"
+        onClick={() => {
+          Cookies.remove("authToken", { path: "/" }); // Remove the auth token
+          router.push("/");
+        }}
+      >
+        Logout
+      </button>
       {/* Form to Add Product */}
       <div className="bg-white shadow-lg rounded-lg p-6 mb-8">
         <h2 className="text-xl font-semibold mb-4 text-gray-700">
