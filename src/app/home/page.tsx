@@ -36,11 +36,12 @@ export default function Home() {
 
   const generatePDF = () => {
     const doc = new jsPDF();
-    doc.text("Bill Invoice", 14, 10);
+    doc.text("INVENTIO 3.0 - Bill Invoice", 14, 10);
+    // doc.text("Bill Invoice", 20, 30);
 
     autoTable(doc, {
       startY: 20,
-      head: [["Product Name", "Quantity", "Price", "Total"]],
+      head: [["Product", "Quantity", "Price", "Total"]],
       body: products.map((prod) => [
         prod.name,
         prod.quantity,
@@ -56,17 +57,23 @@ export default function Home() {
       doc.lastAutoTable.finalY + 10
     );
 
+    doc.text(`Thank You - Team BBA`, 50, doc.lastAutoTable.finalY + 50);
+
     doc.save("bill.pdf");
   };
 
   return (
     <div className="container mx-auto p-6">
       <h1 className="text-3xl font-bold text-center mb-8 text-gray-800">
-        Generate Bill
+        INVENTIO 3.0
+      </h1>
+      <h1 className="text-3xl font-bold text-center mb-8 text-gray-800">
+        Bill Generator - (BBA Students)
       </h1>
 
       <button
-        className="text-3xl font-bold text-center mb-8 text-gray-800"
+        type="button"
+        className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         onClick={() => {
           Cookies.remove("authToken", { path: "/" }); // Remove the auth token
           router.push("/");

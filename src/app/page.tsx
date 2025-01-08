@@ -44,6 +44,10 @@ const LoginPage = () => {
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100">
       <div className="p-6 bg-white shadow-md rounded-md">
+        <h1 className="text-2xl text-center font-bold mb-4">INVENTIO 3.0</h1>
+
+        <h1 className="text-2xl text-center font-bold mb-6">BILL GENERATOR</h1>
+
         <h1 className="text-2xl font-bold mb-4">Login</h1>
         <form onSubmit={handleLogin}>
           <div className="mb-4">
